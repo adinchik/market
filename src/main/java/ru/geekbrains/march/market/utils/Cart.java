@@ -32,4 +32,14 @@ public class Cart {
         totalPrice = BigDecimal.ZERO;
         items.forEach(i -> totalPrice = totalPrice.add(i.getPrice()));
     }
+
+    public void delete(Product p) {
+        for (CartItem item: items) {
+            if (item.getProductId().equals(p.getId())) {
+                item.decrementQuantity();
+                recalculate();
+                return;
+            }
+        }
+    }
 }
