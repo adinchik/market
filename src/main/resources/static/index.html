@@ -27,6 +27,7 @@
             <td>Название</td>
             <td>Цена</td>
             <td></td>
+            <td></td>
         </tr>
         </thead>
         <tbody>
@@ -36,6 +37,9 @@
             <td>{{p.price}}</td>
             <td>
                 <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="addProductToShoppingCart(p.id)">Добавить в корзину</button>
             </td>
         </tr>
         </tbody>
@@ -51,12 +55,39 @@
             <input type="number" class="form-control" id="newProductPrice" ng-model="newProduct.price" placeholder="Цена">
         </div>
         <div class="col-auto">
-            <input type="text" class="form-control" id="newProductCategoryTitle" ng-model="newProduct.categoryTitle" placeholder="Название категории">
-        </div>
-        <div class="col-auto">
             <button type="submit" class="btn btn-primary mb-3">Создать</button>
         </div>
     </form>
+    <p></p>
+    <h3>Корзина</h3>
+    <p></p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Название</td>
+            <td>Цена за 1 штуку</td>
+            <td>Количество штук</td>
+            <td>Цена</td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="i in cart.items">
+            <td>{{i.productId}}</td>
+            <td>{{i.productTitle}}</td>
+            <td>{{i.pricePerProduct}}</td>
+            <td>
+                <button class="btn btn-success" ng-click="addProductToShoppingCart(i.productId)">+</button>
+                {{i.quantity}}
+                <button class="btn btn-danger" ng-click="deleteProductFromShoppingCart(i.productId)">-</button>
+            </td>
+            <td>{{i.price}}</td>
+        </tr>
+        </tbody>
+    </table>
+    <p></p>
+    <button class="btn btn-primary" ng-click="clearShoppingCart()">Очистить корзину</button>
+    <p></p>
 </div>
 </body>
 </html>
