@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<xs:schema
+        xmlns:xs="http://www.w3.org/2001/XMLSchema"
+        xmlns:tns="http://www.geekbrains.ru/march/market/categories"
+        xmlns:st="http://www.geekbrains.ru/march/market/products"
+        targetNamespace="http://www.geekbrains.ru/march/market/categories" elementFormDefault="qualified">
+
+    <xs:import schemaLocation="products.xsd" namespace="http://www.geekbrains.ru/march/market/products"/>
+
+    <xs:complexType name="category">
+        <xs:sequence>
+            <xs:element name="title" type="xs:string"/>
+            <xs:element name="productDtos" maxOccurs="unbounded" type="st:productDto"/>
+        </xs:sequence>
+    </xs:complexType>
+</xs:schema>
