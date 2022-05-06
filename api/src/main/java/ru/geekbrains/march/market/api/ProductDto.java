@@ -9,6 +9,15 @@ public class ProductDto {
     private BigDecimal price;
     private String categoryTitle;
 
+    public ProductDto(Long id, String title, BigDecimal price, String categoryTitle) {
+        this.id = id;
+        this.title = title;
+        this.price = price;
+        this.categoryTitle = categoryTitle;
+    }
+
+    public ProductDto() {}
+
     public Long getId() {
         return id;
     }

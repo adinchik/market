@@ -4,6 +4,7 @@ import lombok.Data;
 import ru.geekbrains.march.market.api.ProductDto;
 
 import java.math.BigDecimal;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
