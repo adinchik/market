@@ -9,8 +9,6 @@ import ru.geekbrains.march.market.cart.services.CartService;
 @RestController
 @RequestMapping("/api/v1/cart")
 @RequiredArgsConstructor
-@CrossOrigin("*")
-
 public class CartController {
     private final CartService cartService;
 

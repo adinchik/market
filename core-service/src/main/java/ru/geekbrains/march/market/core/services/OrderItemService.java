@@ -9,6 +9,7 @@ import ru.geekbrains.march.market.core.entities.OrderItem;
 import ru.geekbrains.march.market.core.exceptions.ResourceNotFoundException;
 import ru.geekbrains.march.market.core.repositories.OrderItemRepository;
 
+import javax.transaction.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 

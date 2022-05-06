@@ -1,6 +1,5 @@
 package ru.geekbrains.march.market.core.entities;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
@@ -21,9 +20,8 @@ public class Order {
     @Column(name = "id")
     private Long id;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @JoinColumn(name = "username")
+    private String username;
 
     @Column(name = "total_price")
     private BigDecimal totalPrice;

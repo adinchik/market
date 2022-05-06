@@ -1,17 +1,19 @@
-package ru.geekbrains.march.market.core.controllers;
+package ru.geekbrains.march.market.auth.controllers;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import ru.geekbrains.march.market.core.entities.User;
-import ru.geekbrains.march.market.core.exceptions.ResourceNotFoundException;
-import ru.geekbrains.march.market.core.services.UserService;
+import ru.geekbrains.march.market.auth.entities.User;
+import ru.geekbrains.march.market.auth.exceptions.ResourceNotFoundException;
+import ru.geekbrains.march.market.auth.services.UserService;
 
 @RestController
 @RequiredArgsConstructor
 @RequestMapping("/user")
+@CrossOrigin("*")
 public class UserController {
     private final UserService userService;
 
