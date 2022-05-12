@@ -1,0 +1,43 @@
+<div>
+    <p></p>
+    <h3>Список товаров</h3>
+    <p></p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>Название</td>
+            <td>Цена</td>
+            <td></td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="p in products">
+            <td>{{p.id}}</td>
+            <td>{{p.title}}</td>
+            <td>{{p.price}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteProduct(p.id)">Удалить</button>
+            </td>
+            <td>
+                <button class="btn btn-primary" ng-click="addToCart(p.id)">Добавить в корзину</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+<!--    <p></p>-->
+<!--    <h3>Добавить продукт</h3>-->
+<!--    <p></p>-->
+<!--    <form class="row g-3" ng-submit="createNewProduct()">-->
+<!--        <div class="col-auto">-->
+<!--            <input type="text" class="form-control" id="newProductTitle" ng-model="newProduct.title" placeholder="Название">-->
+<!--        </div>-->
+<!--        <div class="col-auto">-->
+<!--            <input type="number" class="form-control" id="newProductPrice" ng-model="newProduct.price" placeholder="Цена">-->
+<!--        </div>-->
+<!--        <div class="col-auto">-->
+<!--            <button type="submit" class="btn btn-primary mb-3">Создать</button>-->
+<!--        </div>-->
+<!--    </form>-->
+</div>

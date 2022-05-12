@@ -10,12 +10,12 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.ActiveProfiles;
 import ru.geekbrains.march.market.api.CartDto;
 import ru.geekbrains.march.market.api.CartItemDto;
+import ru.geekbrains.march.market.api.OrderDto;
 import ru.geekbrains.march.market.core.entities.Category;
 import ru.geekbrains.march.market.core.entities.Order;
 import ru.geekbrains.march.market.core.entities.OrderItem;
 import ru.geekbrains.march.market.core.entities.Product;
 import ru.geekbrains.march.market.core.repositories.OrderRepository;
-import ru.geekbrains.march.market.core.services.OrderItemService;
 import ru.geekbrains.march.market.core.services.OrderService;
 
 import java.math.BigDecimal;
@@ -30,8 +30,6 @@ public class OrderServiceTests {
     private OrderService orderService;
     @MockBean
     private OrderRepository orderRepository;
-    @MockBean
-    private OrderItemService orderItemService;
 
     @Test
     public void createNewOrderTest() {
@@ -71,11 +69,14 @@ public class OrderServiceTests {
         cartDto.setTotalPrice(BigDecimal.valueOf(100));
         cartDto.setItems(cartItemDtoList);
 
-        Mockito.doReturn(orderItemList)
-                .when(orderItemService)
-                .addItemsToDB(cartDto.getItems(), order);
+        OrderDto orderDto = new OrderDto();
+        orderDto.setAddress("lalala");
+        orderDto.setPhoneNumber("777");
+        orderDto.setItems(new ArrayList<>());
+        orderDto.setId(1L);
+        orderDto.setTotalPrice(BigDecimal.ZERO);
 
-        orderService.createNewOrder("bob", cartDto);
+        orderService.createNewOrder("bob", cartDto, orderDto);
 
         Mockito.verify(orderRepository, Mockito.times(1)).save(ArgumentMatchers.any());
 

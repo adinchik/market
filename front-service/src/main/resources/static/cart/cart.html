@@ -1,0 +1,61 @@
+<div>
+    <p></p>
+    <h3>Корзина</h3>
+    <p></p>
+    <div ng-show="cart.items.length > 0">
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <td>ID</td>
+                <td>Название</td>
+                <td>Цена за 1 штуку</td>
+                <td>Количество штук</td>
+                <td>Цена</td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="i in cart.items">
+                <td>{{i.productId}}</td>
+                <td>{{i.productTitle}}</td>
+                <td>{{i.pricePerProduct}}</td>
+                <td>
+                    <button class="btn btn-success" ng-click="addProductToShoppingCart(i.productId)">+</button>
+                    {{i.quantity}}
+                    <button class="btn btn-danger" ng-click="deleteProductFromShoppingCart(i.productId)">-</button>
+                </td>
+                <td>{{i.price}}</td>
+            </tr>
+            <tr>
+                <td></td>
+                <td>Итого:</td>
+                <td>{{cart.totalPrice}}</td>
+            </tr>
+            </tbody>
+        </table>
+        <p></p>
+        <button class="btn btn-primary" ng-click="clearShoppingCart()">Очистить корзину</button>
+        <button class="btn btn-secondary" ng-click="guestCreateOrder()" ng-show="!isUserLoggedIn()">Оформить заказ</button>
+<!--        <button class="btn btn-primary" ng-click="createOrder()" ng-show="isUserLoggedIn()">Оформить заказ</button>-->
+
+        <div ng-show="isUserLoggedIn()">
+            <p></p>
+            <h3>Данные заказа</h3>
+            <p></p>
+            <form class="row g-3" ng-submit="createOrder()">
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="newOrderAddress" ng-model="newOrder.address" placeholder="Адрес">
+                </div>
+                <div class="col-auto">
+                    <input type="text" class="form-control" id="newOrderNumber" ng-model="newOrder.phoneNumber" placeholder="Номер телефона">
+                </div>
+                <div class="col-auto">
+                    <button type="submit" class="btn btn-primary mb-3">Оформить заказ</button>
+                </div>
+            </form>
+        </div>
+
+    </div>
+    <div ng-show="cart.items.length == 0">
+        <p>Ваша корзина пуста</p>
+    </div>
+</div>

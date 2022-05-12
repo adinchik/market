@@ -31,7 +31,7 @@ public class CartServiceTests {
         Mockito.doReturn(productDto)
                 .when(productServiceIntegration)
                 .findById(productDto.getId());
-        cartService.addToCart(productDto.getId());
-        Assertions.assertEquals(1, cartService.getCurrentCart().getItems().size());
+        cartService.addToCart("01", productDto.getId());
+        Assertions.assertEquals(1, cartService.getCurrentCart("01").getItems().size());
     }
 }
