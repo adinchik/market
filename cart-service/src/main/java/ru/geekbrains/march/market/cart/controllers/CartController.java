@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
 import ru.geekbrains.march.market.api.CartDto;
+import ru.geekbrains.march.market.cart.converters.CartConverter;
 import ru.geekbrains.march.market.cart.services.CartService;
 
 @RestController
@@ -11,10 +12,11 @@ import ru.geekbrains.march.market.cart.services.CartService;
 @RequiredArgsConstructor
 public class CartController {
     private final CartService cartService;
+    private final CartConverter cartConverter;
 
     @GetMapping
     public CartDto getCurrentCart() {
-        return cartService.getCurrentCart();
+        return cartConverter.entityToDto(cartService.getCurrentCart());
     }
 
     @GetMapping("/add/{productId}")
