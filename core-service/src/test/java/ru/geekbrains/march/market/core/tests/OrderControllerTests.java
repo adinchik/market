@@ -11,6 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.web.servlet.MockMvc;
 import ru.geekbrains.march.market.api.CartDto;
+import ru.geekbrains.march.market.api.OrderDto;
 import ru.geekbrains.march.market.core.integrations.CartServiceIntegration;
 import ru.geekbrains.march.market.core.repositories.ProductRepository;
 import ru.geekbrains.march.market.core.services.OrderService;
@@ -39,10 +40,10 @@ public class OrderControllerTests {
         CartDto cartDto = new CartDto();
         Mockito.doReturn(cartDto)
                 .when(cartServiceIntegration)
-                .getCurrentCart();
+                .getCurrentCart("bob");
         Mockito.doNothing()
                 .when(orderService)
-                .createNewOrder("bob", cartDto);
+                .createNewOrder("bob", cartDto, new OrderDto());
 
         mvc
                 .perform(
