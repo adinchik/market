@@ -14,6 +14,8 @@ import reactor.core.publisher.Mono;
 @Component
 public class JwtAuthFilter extends AbstractGatewayFilterFactory<JwtAuthFilter.Config> {
     @Autowired
+    private RouterValidator routerValidator;
+    @Autowired
     private JwtUtil jwtUtil;
 
     public JwtAuthFilter() {
@@ -29,12 +31,16 @@ public class JwtAuthFilter extends AbstractGatewayFilterFactory<JwtAuthFilter.Co
                 return this.onError(exchange, "Invalid header username", HttpStatus.BAD_REQUEST);
             }
 
-            if (!isAuthMissing(request)) {
+            if (routerValidator.isSecured.test(request)) {
+                if (isAuthMissing(request)) {
+                    return this.onError(exchange, "Authorization header is missing in request", HttpStatus.UNAUTHORIZED);
+                }
                 final String token = getAuthHeader(request);
                 if (jwtUtil.isInvalid(token)) {
                     return this.onError(exchange, "Authorization header is invalid", HttpStatus.UNAUTHORIZED);
                 }
                 populateRequestWithHeaders(exchange, token);
+
             }
             return chain.filter(exchange);
         };
@@ -67,7 +73,8 @@ public class JwtAuthFilter extends AbstractGatewayFilterFactory<JwtAuthFilter.Co
         Claims claims = jwtUtil.getAllClaimsFromToken(token);
         exchange.getRequest().mutate()
                 .header("username", claims.getSubject())
-//                .header("role", String.valueOf(claims.get("role")))
+   //             .header("role", String.valueOf(claims.get("role")))
                 .build();
     }
 }
+
