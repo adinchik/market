@@ -22,7 +22,15 @@ insert into products (title, price, category_id) values
 ('Bread', 32.00, 1),
 ('Milk', 120.00, 1),
 ('Butter', 320.00, 1),
-('Cheese', 500.00, 1);
+('Cheese', 500.00, 1),
+('Sweets', 50.00, 1),
+('Cakes', 30.00, 1),
+('Onions', 140.00, 1),
+('Tomatos', 160.00, 1),
+('Lemonade', 100.00, 1),
+('Cucumbers', 110.00, 1),
+('IceCream', 70.00, 1),
+('Coca-Cola 0.9 л.', 87.00, 1);
 
 create table orders
 (

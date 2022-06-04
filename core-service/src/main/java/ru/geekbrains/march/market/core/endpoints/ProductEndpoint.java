@@ -1,6 +1,8 @@
 package ru.geekbrains.march.market.core.endpoints;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.domain.Page;
+import org.springframework.data.jpa.domain.Specification;
 import org.springframework.ws.server.endpoint.annotation.Endpoint;
 import org.springframework.ws.server.endpoint.annotation.PayloadRoot;
 import org.springframework.ws.server.endpoint.annotation.RequestPayload;
@@ -38,7 +40,8 @@ public class ProductEndpoint {
     @ResponsePayload
     public GetAllProductsResponse getAllStudents(@RequestPayload GetAllProductsRequest request) {
         GetAllProductsResponse response = new GetAllProductsResponse();
-        List<Product> products = productService.findAll();
+        Specification<Product> spec = Specification.where(null);
+        Page<Product> products = productService.findAll(1, 10, spec);
         for (Product product: products) {
             response.getProductDtos().add(productConverter.entityToDto(product));
         }
