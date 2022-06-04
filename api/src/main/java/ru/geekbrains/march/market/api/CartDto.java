@@ -1,11 +1,15 @@
 package ru.geekbrains.march.market.api;
 
+import io.swagger.v3.oas.annotations.media.Schema;
+
 import java.math.BigDecimal;
 import java.util.List;
 
-
+@Schema(description = "Модель корзины")
 public class CartDto {
+    @Schema(description = "Список продуктов в корзине", required = true)
     private List<CartItemDto> items;
+    @Schema(description = "Общая сумма продуктов корзины", required = true, example = "15.0")
     private BigDecimal totalPrice;
 
     public List<CartItemDto> getItems() {
