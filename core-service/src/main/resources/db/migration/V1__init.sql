@@ -54,3 +54,14 @@ create table orders_items
     created_at              timestamp default current_timestamp,
     updated_at              timestamp default current_timestamp
 );
+
+create table students (
+    id          bigserial primary key,
+    name        varchar(255),
+    age         int,
+    created_at  timestamp default current_timestamp,
+    updated_at  timestamp default current_timestamp
+);
+
+insert into students (name, age) values
+('Adina', 27);
