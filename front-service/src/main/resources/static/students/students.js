@@ -1,6 +1,6 @@
-angular.module('market').controller('storeController', function ($scope, $http, $localStorage) {
+angular.module('market').controller('studentController', function ($scope, $http, $localStorage) {
     $scope.loadStudents = function () {
-        $http.get('http://localhost:5555/cart/api/v1/students/')
+        $http.get('http://localhost:5555/core/api/v1/students/')
         .then(function (response) {
             $scope.students = response.data;
         });
