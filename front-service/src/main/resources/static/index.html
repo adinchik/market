@@ -35,6 +35,9 @@
                     <a class="nav-link" href="#!/register">Регистрация</a>
                 </li>
                 <li class="nav-item" ng-show="!isUserLoggedIn()">
+                    <a class="nav-link" href="#!/student">Список студентов</a>
+                </li>
+                <li class="nav-item" ng-show="!isUserLoggedIn()">
                     <form class="align-middle" ng-submit="tryToAuth()">
                         <div class="input-group input-group-sm" style="padding: 4px;">
                             <input id="navLoginField" class="form-control" ng-model="user.username" type="text"
@@ -63,6 +66,7 @@
     <script src="orders/orders.js"></script>
     <script src="welcome/welcome.js"></script>
     <script src="register/register.js"></script>
+    <script src="student/students.js"></script>
 </div>
 </body>
 </html>

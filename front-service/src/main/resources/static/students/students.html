@@ -1,0 +1,40 @@
+<div>
+    <p></p>
+    <h3>Список студентов</h3>
+    <p></p>
+    <table class="table table-hover">
+        <thead>
+        <tr>
+            <td>ID</td>
+            <td>ФИО</td>
+            <td>Возраст</td>
+            <td></td>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="s in stundets">
+            <td>{{s.id}}</td>
+            <td>{{s.name}}</td>
+            <td>{{s.age}}</td>
+            <td>
+                <button class="btn btn-danger" ng-click="deleteStudent(s.id)">Удалить</button>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <p></p>
+    <h3>Добавить студента</h3>
+    <p></p>
+    <form class="row g-3" ng-submit="createNewStudent()">
+        <div class="col-auto">
+            <input type="text" class="form-control" id="newStudentName" ng-model="newStudent.name" placeholder="Имя">
+        </div>
+        <div class="col-auto">
+            <input type="number" class="form-control" id="newStudentAge" ng-model="newStudent.age" placeholder="Возраст">
+        </div>
+        <div class="col-auto">
+            <button type="submit" class="btn btn-primary mb-3">Создать</button>
+        </div>
+    </form>
+</div>
